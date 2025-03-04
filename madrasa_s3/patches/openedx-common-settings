@@ -1,0 +1,8 @@
+    VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
+    VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
+    GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"] = GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"].lstrip("/")
+    AWS_STORAGE_BUCKET_NAME = "madrasabackup"
+    AWS_S3_CUSTOM_DOMAIN = "madrasabackup.s3.amazonaws.com"
+    AWS_S3_REGION_NAME = "eu-west-1"
+    AWS_LOCATION = "media"
+    AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60

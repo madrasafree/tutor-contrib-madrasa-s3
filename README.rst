@@ -1,7 +1,7 @@
 madrasa_s3 plugin for `Tutor <https://docs.tutor.edly.io>`__
 ############################################################
 
-madrasa_s3 plugin for Tutor
+madrasa_s3 plugin for Tutor provides integration for offloading media files to Amazon S3.
 
 
 Installation
