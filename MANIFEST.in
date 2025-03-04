@@ -1,0 +1,2 @@
+recursive-include madrasa_s3/patches *
+recursive-include madrasa_s3/templates *
