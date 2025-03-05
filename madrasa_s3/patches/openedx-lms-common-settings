@@ -1,12 +1,12 @@
-    PROFILE_IMAGE_BACKEND = {
-      "class": "storages.backends.s3boto3.S3Boto3Storage",
-      "options": {
-          "bucket": "madrasabackup",
-          "location": "profile",
-          "custom_domain": "madrasabackup.s3.amazonaws.com",
-          "base_url": "/profile/",
-          "headers": {
-                  "Cache-Control": "max-age=31536000"
-          }
-        }
+PROFILE_IMAGE_BACKEND = {
+  "class": "storages.backends.s3boto3.S3Boto3Storage",
+  "options": {
+      "bucket": "madrasabackup",
+      "location": "profile",
+      "custom_domain": "madrasabackup.s3.amazonaws.com",
+      "base_url": "/profile/",
+      "headers": {
+              "Cache-Control": "max-age=31536000"
+      }
     }
+}
