@@ -1,6 +1,9 @@
 # -----------------------------------------------------------------------------
 # tutor plugin madrasa_s3
 # note that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in /home/ubuntu/.local/share/tutor/config.yml
+#
+# note: a better choice of patch might be
+#       openedx-cms-settings or openedx-cms-common-settings.
 # -----------------------------------------------------------------------------
 MEDIA_ROOT = "openedx/media/"
 AWS_STORAGE_BUCKET_NAME = "madrasabackup"
@@ -24,7 +27,7 @@ VIDEO_TRANSCRIPTS_SETTINGS = dict(
         location=MEDIA_ROOT,
     ),
     DIRECTORY_PREFIX='video-transcripts/',
-    BASE_URL=MEDIA_URL,
+    BASE_URL=os.path.join("/", MEDIA_ROOT)
 )
 
 # example reference:
@@ -37,5 +40,5 @@ VIDEO_IMAGE_SETTINGS = dict(
         location=MEDIA_ROOT,
     ),
     DIRECTORY_PREFIX='video-images/',
-    BASE_URL=MEDIA_URL,
+    BASE_URL=os.path.join("/", MEDIA_ROOT)
 )
