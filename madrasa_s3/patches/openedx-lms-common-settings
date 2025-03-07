@@ -2,18 +2,19 @@
 # tutor plugin madrasa_s3
 # -----------------------------------------------------------------------------
 MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
-PROFILE_IMAGE_BACKEND = dict(
-  class=MADRASA_S3_STORAGE_CLASS,
-  options=dict(
+PROFILE_IMAGE_BACKEND = {
+  'class': MADRASA_S3_STORAGE_CLASS,
+  'options': dict(
     bucket=AWS_STORAGE_BUCKET_NAME,
-    location='profile',
+    location='profile-images/',
     custom_domain=AWS_S3_CUSTOM_DOMAIN,
-    base_url='/profile/',
+    base_url='/profile-images/',
     headers=dict(
       Cache_Control='max-age=31536000'
     )
-  )
-)
+  ),
+}
+
 GRADES_DOWNLOAD = dict(
     STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
     STORAGE_KWARGS=dict(location=MEDIA_ROOT),
