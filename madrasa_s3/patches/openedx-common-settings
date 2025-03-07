@@ -15,8 +15,8 @@ MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
 FILE_UPLOAD_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 
-# example reference:
-# https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L367
+# example reference: https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L367
+# example url: https://madrasabackup.s3.amazonaws.com/openedx/media/video-transcripts/004ea9f891e44ec6a984625c4e4771a4.sjson
 #
 # see https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
@@ -24,12 +24,13 @@ VIDEO_TRANSCRIPTS_SETTINGS = dict(
     STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
+        region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
         location=MEDIA_ROOT,
         ),
     DIRECTORY_PREFIX='video-transcripts/',
-    BASE_URL=os.path.join("/", MEDIA_ROOT)
+    BASE_URL=MEDIA_URL,
 )
 
 # example reference:
@@ -42,10 +43,11 @@ VIDEO_IMAGE_SETTINGS = dict(
     STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
+        region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
         location=MEDIA_ROOT,
         ),
     DIRECTORY_PREFIX='video-images/',
-    BASE_URL=os.path.join("/", MEDIA_ROOT)
+    BASE_URL=MEDIA_URL,
 )
