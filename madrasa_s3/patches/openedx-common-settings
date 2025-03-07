@@ -4,12 +4,13 @@
 # note:
 # that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in /home/ubuntu/.local/share/tutor/config.yml
 # -----------------------------------------------------------------------------
-MEDIA_ROOT = "media/"
-MEDIA_URL = "/media/"
+MADRASA_OFFLOADED_MEDIA_ROOT = "media/"
+MADRASA_OFFLOADED_MEDIA_URL = "/media/"
+MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
+
 AWS_STORAGE_BUCKET_NAME = "madrasabackup"
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_REGION_NAME = "eu-west-1"
-MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
 
 FILE_UPLOAD_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
@@ -20,16 +21,16 @@ FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 # see https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
     VIDEO_TRANSCRIPTS_MAX_BYTES=3 * 1024 * 1024,    # 3 MB
-    STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
+    STORAGE_CLASS=MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
         region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=MEDIA_ROOT,
+        location=MADRASA_OFFLOADED_MEDIA_ROOT,
         ),
     DIRECTORY_PREFIX='video-transcripts/',
-    BASE_URL=MEDIA_URL,
+    BASE_URL=MADRASA_OFFLOADED_MEDIA_URL,
 )
 
 # example reference:
@@ -39,14 +40,14 @@ VIDEO_TRANSCRIPTS_SETTINGS = dict(
 VIDEO_IMAGE_SETTINGS = dict(
     VIDEO_IMAGE_MAX_BYTES=2 * 1024 * 1024,    # 2 MB
     VIDEO_IMAGE_MIN_BYTES=2 * 1024,       # 2 KB
-    STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
+    STORAGE_CLASS=MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
         region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=MEDIA_ROOT,
+        location=MADRASA_OFFLOADED_MEDIA_ROOT,
         ),
     DIRECTORY_PREFIX='video-images/',
-    BASE_URL=MEDIA_URL,
+    BASE_URL=MADRASA_OFFLOADED_MEDIA_URL,
 )

@@ -1,6 +1,0 @@
-# -----------------------------------------------------------------------------
-# tutor plugin madrasa_s3
-# -----------------------------------------------------------------------------
-AWS_STORAGE_BUCKET_NAME : "madrasabackup"
-AWS_S3_CUSTOM_DOMAIN: "madrasabackup.s3.amazonaws.com"
-AWS_QUERYSTRING_AUTH: true
