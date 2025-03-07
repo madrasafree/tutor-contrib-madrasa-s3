@@ -9,8 +9,12 @@
 
 # setup verbose aws cli logging
 import logging
-for name in ['boto', 's3transfer', 'boto3', 'botocore']:
-    logging.getLogger(name).setLevel(logging.DEBUG)
+import boto3
+boto3.set_stream_logger('boto3', logging.DEBUG)
+boto3.set_stream_logger('botocore', logging.DEBUG)
+boto3.set_stream_logger('s3transfer', logging.DEBUG)
+boto3.set_stream_logger('', logging.DEBUG)
+
 
 madrasa_offloaded_media_root = "media/"
 madrasa_offloaded_media_url = "/media/"
