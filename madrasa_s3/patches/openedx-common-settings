@@ -37,6 +37,17 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 FILE_UPLOAD_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 
+madrasa_offloaded_storage_kwargs = dict(
+        access_key=AWS_S3_ACCESS_KEY_ID,
+        secret_key=AWS_S3_SECRET_ACCESS_KEY,
+        bucket_name=AWS_STORAGE_BUCKET_NAME,
+        region_name=madrasa_offloaded_media_region,
+        file_overwrite=True,
+        querystring_auth=True,
+        custom_domain=AWS_S3_CUSTOM_DOMAIN,
+        location=madrasa_offloaded_media_root,
+        )
+
 # example reference: https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L367
 # example url: https://madrasabackup.s3.amazonaws.com/media/video-transcripts/004ea9f891e44ec6a984625c4e4771a4.sjson
 #
@@ -44,15 +55,7 @@ FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
     VIDEO_TRANSCRIPTS_MAX_BYTES=3 * 1024 * 1024,    # 3 MB
     STORAGE_CLASS=madrasa_offloaded_media_storage_class,
-    STORAGE_KWARGS=dict(
-        access_key=AWS_S3_ACCESS_KEY_ID,
-        secret_key=AWS_S3_SECRET_ACCESS_KEY,
-        bucket_name=AWS_STORAGE_BUCKET_NAME,
-        region_name=madrasa_offloaded_media_region,
-        file_overwrite=True,
-        custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=madrasa_offloaded_media_root,
-        ),
+    STORAGE_KWARGS=madrasa_offloaded_storage_kwargs,
     DIRECTORY_PREFIX='video-transcripts/',
     BASE_URL=madrasa_offloaded_media_url,
 )
@@ -65,15 +68,7 @@ VIDEO_IMAGE_SETTINGS = dict(
     VIDEO_IMAGE_MAX_BYTES=2 * 1024 * 1024,    # 2 MB
     VIDEO_IMAGE_MIN_BYTES=2 * 1024,       # 2 KB
     STORAGE_CLASS=madrasa_offloaded_media_storage_class,
-    STORAGE_KWARGS=dict(
-        access_key=AWS_S3_ACCESS_KEY_ID,
-        secret_key=AWS_S3_SECRET_ACCESS_KEY,
-        bucket_name=AWS_STORAGE_BUCKET_NAME,
-        region_name=madrasa_offloaded_media_region,
-        file_overwrite=True,
-        custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=madrasa_offloaded_media_root,
-        ),
+    STORAGE_KWARGS=madrasa_offloaded_storage_kwargs,
     DIRECTORY_PREFIX='video-images/',
     BASE_URL=madrasa_offloaded_media_url,
 )
