@@ -7,22 +7,25 @@
 #   /home/ubuntu/.local/share/tutor/config.yml
 # -----------------------------------------------------------------------------
 
+# -------------------------------------
 # setup verbose aws cli logging
+# -------------------------------------
 import logging
 import boto3
 logging.basicConfig(level=logging.DEBUG)
 for name in ['', 'boto3', 'botocore', 's3transfer']:
     boto3.set_stream_logger(name, logging.DEBUG, format_string=None)
-    for handler in logging.getLogger(name).handlers:
+    logger = logging.getLogger(name)
+    for handler in logger.handlers:
         print(f'{name} logger handler: {handler}')
-
-logging.getLogger('boto3').debug('openedx-common-settings test log message from boto3')
-logging.getLogger('botocore').debug('openedx-common-settings test log message from botocore')
+    logger.debug('tutor plugin madrasa_s3 patch openedx-common-settings test log message from %s', name)
 
 madrasa_offloaded_media_root = "media/"
 madrasa_offloaded_media_url = "/media/"
 madrasa_offloaded_media_storage_class = "storages.backends.s3boto3.S3Boto3Storage"
 
+MEDIA_ROOT = madrasa_offloaded_media_root
+MEDIA_URL = madrasa_offloaded_media_url
 AWS_STORAGE_BUCKET_NAME = "madrasabackup"
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_REGION_NAME = "eu-west-1"
