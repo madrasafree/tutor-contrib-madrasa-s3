@@ -1,12 +1,11 @@
 # -----------------------------------------------------------------------------
-# tutor plugin madrasa_s3
-# note that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in /home/ubuntu/.local/share/tutor/config.yml
+# tutor plugin madrasa_s3 openedx-common-settings
 #
-# note: a better choice of patch might be
-#       openedx-cms-settings or openedx-cms-common-settings.
+# note:
+# that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in /home/ubuntu/.local/share/tutor/config.yml
 # -----------------------------------------------------------------------------
-DEBUG = True
-MEDIA_ROOT = "openedx/media/"
+MEDIA_ROOT = "media/"
+MEDIA_URL = "/media/"
 AWS_STORAGE_BUCKET_NAME = "madrasabackup"
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_REGION_NAME = "eu-west-1"
@@ -16,7 +15,7 @@ FILE_UPLOAD_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 
 # example reference: https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L367
-# example url: https://madrasabackup.s3.amazonaws.com/openedx/media/video-transcripts/004ea9f891e44ec6a984625c4e4771a4.sjson
+# example url: https://madrasabackup.s3.amazonaws.com/media/video-transcripts/004ea9f891e44ec6a984625c4e4771a4.sjson
 #
 # see https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
