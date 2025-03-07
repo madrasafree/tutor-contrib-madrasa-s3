@@ -1,12 +1,23 @@
-PROFILE_IMAGE_BACKEND = {
-  "class": "storages.backends.s3boto3.S3Boto3Storage",
-  "options": {
-      "bucket": "madrasabackup",
-      "location": "profile",
-      "custom_domain": "madrasabackup.s3.amazonaws.com",
-      "base_url": "/profile/",
-      "headers": {
-              "Cache-Control": "max-age=31536000"
-      }
-    }
-}
+# -----------------------------------------------------------------------------
+# tutor plugin madrasa_s3
+# -----------------------------------------------------------------------------
+MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
+PROFILE_IMAGE_BACKEND = dict(
+  class=MADRASA_S3_STORAGE_CLASS,
+  options=dict(
+    bucket=AWS_STORAGE_BUCKET_NAME,
+    location='profile',
+    custom_domain=AWS_S3_CUSTOM_DOMAIN,
+    base_url='/profile/',
+    headers=dict(
+      Cache_Control='max-age=31536000'
+    )
+  )
+)
+GRADES_DOWNLOAD = dict(
+    STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
+    STORAGE_KWARGS=dict(location=MEDIA_ROOT),
+    STORAGE_TYPE=None,
+    BUCKET=AWS_STORAGE_BUCKET_NAME,
+    ROOT_PATH=None,
+)
