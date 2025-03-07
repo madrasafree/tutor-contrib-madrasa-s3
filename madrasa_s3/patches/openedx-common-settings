@@ -7,6 +7,11 @@
 #   /home/ubuntu/.local/share/tutor/config.yml
 # -----------------------------------------------------------------------------
 
+# setup verbose aws cli logging
+import logging
+for name in ['boto', 's3transfer', 'boto3', 'botocore']:
+    logging.getLogger(name).setLevel(logging.DEBUG)
+
 madrasa_offloaded_media_root = "media/"
 madrasa_offloaded_media_url = "/media/"
 madrasa_offloaded_media_storage_class = "storages.backends.s3boto3.S3Boto3Storage"
@@ -54,14 +59,3 @@ VIDEO_IMAGE_SETTINGS = dict(
     DIRECTORY_PREFIX='video-images/',
     BASE_URL=madrasa_offloaded_media_url,
 )
-
-LOGGING['loggers']['boto3'] = {
-    'handlers': ['console'],
-    'level': 'DEBUG',
-    'propagate': False,
-}
-LOGGING['loggers']['botocore'] = {
-    'handlers': ['console'],
-    'level': 'DEBUG',
-    'propagate': False,
-}
