@@ -10,11 +10,14 @@
 # setup verbose aws cli logging
 import logging
 import boto3
-boto3.set_stream_logger('boto3', logging.DEBUG)
-boto3.set_stream_logger('botocore', logging.DEBUG)
-boto3.set_stream_logger('s3transfer', logging.DEBUG)
-boto3.set_stream_logger('', logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
+for name in ['', 'boto3', 'botocore', 's3transfer']:
+    boto3.set_stream_logger(name, logging.DEBUG, format_string=None)
+    for handler in logging.getLogger(name).handlers:
+        print(f'{name} logger handler: {handler}')
 
+logging.getLogger('boto3').debug('openedx-common-settings test log message from boto3')
+logging.getLogger('botocore').debug('openedx-common-settings test log message from botocore')
 
 madrasa_offloaded_media_root = "media/"
 madrasa_offloaded_media_url = "/media/"
