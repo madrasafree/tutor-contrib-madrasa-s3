@@ -1,12 +1,15 @@
+# pylint: disable=C0301,C0114,C0103
 # -----------------------------------------------------------------------------
 # tutor plugin madrasa_s3 openedx-common-settings
 #
 # note:
-# that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in /home/ubuntu/.local/share/tutor/config.yml
+#   that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in 
+#   /home/ubuntu/.local/share/tutor/config.yml
 # -----------------------------------------------------------------------------
-MADRASA_OFFLOADED_MEDIA_ROOT = "media/"
-MADRASA_OFFLOADED_MEDIA_URL = "/media/"
-MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
+
+madrasa_offloaded_media_root = "media/"
+madrasa_offloaded_media_url = "/media/"
+madrasa_offloaded_media_storage_class = "storages.backends.s3boto3.S3Boto3Storage"
 
 AWS_STORAGE_BUCKET_NAME = "madrasabackup"
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
@@ -21,16 +24,16 @@ FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 # see https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
     VIDEO_TRANSCRIPTS_MAX_BYTES=3 * 1024 * 1024,    # 3 MB
-    STORAGE_CLASS=MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
+    STORAGE_CLASS=madrasa_offloaded_media_storage_class,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
         region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=MADRASA_OFFLOADED_MEDIA_ROOT,
+        location=madrasa_offloaded_media_root,
         ),
     DIRECTORY_PREFIX='video-transcripts/',
-    BASE_URL=MADRASA_OFFLOADED_MEDIA_URL,
+    BASE_URL=madrasa_offloaded_media_url,
 )
 
 # example reference:
@@ -40,14 +43,25 @@ VIDEO_TRANSCRIPTS_SETTINGS = dict(
 VIDEO_IMAGE_SETTINGS = dict(
     VIDEO_IMAGE_MAX_BYTES=2 * 1024 * 1024,    # 2 MB
     VIDEO_IMAGE_MIN_BYTES=2 * 1024,       # 2 KB
-    STORAGE_CLASS=MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
+    STORAGE_CLASS=madrasa_offloaded_media_storage_class,
     STORAGE_KWARGS=dict(
         bucket_name=AWS_STORAGE_BUCKET_NAME,
         region_name=AWS_S3_REGION_NAME,
         file_overwrite=True,
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
-        location=MADRASA_OFFLOADED_MEDIA_ROOT,
+        location=madrasa_offloaded_media_root,
         ),
     DIRECTORY_PREFIX='video-images/',
-    BASE_URL=MADRASA_OFFLOADED_MEDIA_URL,
+    BASE_URL=madrasa_offloaded_media_url,
 )
+
+LOGGING['loggers']['boto3'] = {
+    'handlers': ['console'],
+    'level': 'DEBUG',
+    'propagate': False,
+}
+LOGGING['loggers']['botocore'] = {
+    'handlers': ['console'],
+    'level': 'DEBUG',
+    'propagate': False,
+}

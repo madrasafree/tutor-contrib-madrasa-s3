@@ -1,19 +1,20 @@
+# pylint: disable=C0301,C0114,C0103
 # -----------------------------------------------------------------------------
 # tutor plugin madrasa_s3 openedx-lms-common-settings
 # -----------------------------------------------------------------------------
-MADRASA_OFFLOADED_MEDIA_ROOT = "media/"
-MADRASA_OFFLOADED_MEDIA_URL = "/media/"
-MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
+madrasa_offloaded_media_root = "media/"
+madrasa_offloaded_media_url = "/media/"
+madrasa_offloaded_media_storage_class = "storages.backends.s3boto3.S3Boto3Storage"
 
 # mcdaniel: why is is non-standard????
 #
 # example reference:
 # https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/user_api/accounts/image_helpers.py#L28
 PROFILE_IMAGE_BACKEND = {
-  'class': MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
+  'class': madrasa_offloaded_media_storage_class,
   'options': {
-    'location': os.path.join(MADRASA_OFFLOADED_MEDIA_ROOT, 'profile-images/'),
-    'base_url': os.path.join(MADRASA_OFFLOADED_MEDIA_URL, 'profile-images/'),
+    'location': os.path.join(madrasa_offloaded_media_root, 'profile-images/'),
+    'base_url': os.path.join(madrasa_offloaded_media_url, 'profile-images/'),
   },
 }
 
@@ -22,11 +23,11 @@ PROFILE_IMAGE_BACKEND = {
 #
 # it seems that STORAGE_KWARGS is not used in this case, but i'm not 100% sure.
 GRADES_DOWNLOAD = dict(
-    STORAGE_CLASS=MADRASA_OFFLOADED_MEDIA_STORAGE_CLASS,
+    STORAGE_CLASS=madrasa_offloaded_media_storage_class,
     STORAGE_KWARGS=dict(
-      location=os.path.join(MADRASA_OFFLOADED_MEDIA_ROOT, 'grades/'),
+      location=os.path.join(madrasa_offloaded_media_root, 'grades/'),
     ),
     STORAGE_TYPE='s3',
     BUCKET=AWS_STORAGE_BUCKET_NAME,
-    ROOT_PATH=os.path.join(MADRASA_OFFLOADED_MEDIA_ROOT, 'grades/'),
+    ROOT_PATH=os.path.join(madrasa_offloaded_media_root, 'grades/'),
 )
