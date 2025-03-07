@@ -2,18 +2,29 @@
 # tutor plugin madrasa_s3
 # -----------------------------------------------------------------------------
 MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
+
+# mcdaniel: why is is non-standard????
+#
+# example reference:
+# https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/user_api/accounts/image_helpers.py#L28
 PROFILE_IMAGE_BACKEND = {
   'class': MADRASA_S3_STORAGE_CLASS,
   'options': {
     'location': os.path.join(MEDIA_ROOT, 'profile-images/'),
     'base_url': os.path.join(MEDIA_URL, 'profile-images/'),
-},
+  },
 }
 
+# mcdaniel: an example of this configuration being referenced
+# https://github.com/openedx/edx-platform/blob/master/lms/djangoapps/instructor_task/models.py#L231
+#
+# it seems that STORAGE_KWARGS is not used in this case, but i'm not 100% sure.
 GRADES_DOWNLOAD = dict(
     STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
-    STORAGE_KWARGS=dict(location=MEDIA_ROOT),
-    STORAGE_TYPE=None,
+    STORAGE_KWARGS=dict(
+      location=os.path.join(MEDIA_ROOT, 'grades/'),
+    ),
+    STORAGE_TYPE='s3',
     BUCKET=AWS_STORAGE_BUCKET_NAME,
-    ROOT_PATH=None,
+    ROOT_PATH=os.path.join(MEDIA_ROOT, 'grades/'),
 )

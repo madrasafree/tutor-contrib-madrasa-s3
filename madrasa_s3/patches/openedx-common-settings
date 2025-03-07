@@ -11,6 +11,12 @@ MADRASA_S3_STORAGE_CLASS = "storages.backends.s3boto3.S3Boto3Storage"
 FILE_UPLOAD_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 FILE_UPLOAD_STORAGE_PREFIX = 'submissions_attachments'
 
+# mcdaniel: it seems that this is not truly 'integrated' to aws s3, but rather
+# it's only a reference to the location of the files.  Are the files actually
+# uploaded manually??????
+#
+# example reference:
+# https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L367
 VIDEO_TRANSCRIPTS_SETTINGS = dict(
     VIDEO_TRANSCRIPTS_MAX_BYTES=3 * 1024 * 1024,    # 3 MB
     STORAGE_CLASS=MADRASA_S3_STORAGE_CLASS,
@@ -21,6 +27,8 @@ VIDEO_TRANSCRIPTS_SETTINGS = dict(
     BASE_URL=MEDIA_URL,
 )
 
+# example reference:
+# https://github.com/openedx/edx-platform/blob/master/cms/urls.py#L295
 VIDEO_IMAGE_SETTINGS = dict(
     VIDEO_IMAGE_MAX_BYTES=2 * 1024 * 1024,    # 2 MB
     VIDEO_IMAGE_MIN_BYTES=2 * 1024,       # 2 KB
