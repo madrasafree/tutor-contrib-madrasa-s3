@@ -1,6 +1,7 @@
 # pylint: disable=C0301,C0114,C0103
 # -----------------------------------------------------------------------------
-# tutor plugin madrasa_s3 openedx-lms-common-settings
+# tutor plugin madrasa_s3 openedx-cms-common-settings
 # -----------------------------------------------------------------------------
 
-# nothing to do here! yay!
+# Studio course import/export from aws bucket instead of file system.
+COURSE_IMPORT_EXPORT_BUCKET = AWS_STORAGE_BUCKET_NAME
