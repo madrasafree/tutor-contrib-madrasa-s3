@@ -1,6 +1,8 @@
 # pylint: disable=C0301,C0114,C0103
 # -----------------------------------------------------------------------------
 # tutor plugin madrasa_s3 openedx-common-settings
+# contact:  Lawrence McDaniel
+#           https://lawrencemcdaniel.com
 #
 # note:
 #   that AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set in 
@@ -93,3 +95,5 @@ PROFILE_IMAGE_BACKEND = {
     'base_url': os.path.join(madrasa_offloaded_media_url, 'profile-images/'),
   },
 }
+
+######## End of tutor plugin madrasa_s3 openedx-common-settings ########
