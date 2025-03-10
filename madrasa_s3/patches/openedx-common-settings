@@ -24,7 +24,7 @@ for name in ['', 'boto3', 'botocore', 's3transfer']:
 madrasa_offloaded_media_root = "media/"
 madrasa_offloaded_media_url = "/media/"
 madrasa_offloaded_media_storage_class = "storages.backends.s3boto3.S3Boto3Storage"
-madrasa_offloaded_media_region = "us-east-1"
+madrasa_offloaded_media_region = "il-central-1"
 
 MEDIA_ROOT = madrasa_offloaded_media_root
 MEDIA_URL = madrasa_offloaded_media_url
