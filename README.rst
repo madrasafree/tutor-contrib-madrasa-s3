@@ -7,6 +7,7 @@ madrasa_s3 plugin for Tutor provides integration for offloading media files to A
 - course imports/exports
 - video images
 - learner profiles and profile images
+- learner file submissions
 - grades downloads
 
 Note that Course Management Studio defaults the storage strategy to AWS S3 when the aws key-secret are set in cms settings
